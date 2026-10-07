@@ -1,0 +1,445 @@
+openapi: 3.1.0
+info:
+  title: Derived API Contract
+  version: 1.0.0
+paths:
+  /admin/resumen:
+    get:
+      operationId: get_admin_resumen
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /aplicacion-puntos:
+    post:
+      operationId: post_aplicacion_puntos
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /auditorias:
+    get:
+      operationId: get_auditorias
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /auditorias/:auditoriaId:
+    get:
+      operationId: get_auditorias_auditoriaId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /clientes:
+    post:
+      operationId: post_clientes
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /clientes/:clienteId:
+    get:
+      operationId: get_clientes_clienteId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /clientes/:clienteId/compras:
+    get:
+      operationId: get_clientes_clienteId_compras
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /clientes/:clienteId/cuenta-puntos:
+    get:
+      operationId: get_clientes_clienteId_cuenta_puntos
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /clientes/:clienteId/inscripcion:
+    post:
+      operationId: post_clientes_clienteId_inscripcion
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /compras:
+    post:
+      operationId: post_compras
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /compras/:compraId:
+    get:
+      operationId: get_compras_compraId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /compras/:compraId/configurar-entrega:
+    post:
+      operationId: post_compras_compraId_configurar_entrega
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /compras/:compraId/devolucion:
+    post:
+      operationId: post_compras_compraId_devolucion
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /cuentas-puntos/:cuentaId:
+    get:
+      operationId: get_cuentas_puntos_cuentaId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /cuentas-puntos/:cuentaId/ajuste:
+    post:
+      operationId: post_cuentas_puntos_cuentaId_ajuste
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /cuentas-puntos/:cuentaId/movimientos:
+    get:
+      operationId: get_cuentas_puntos_cuentaId_movimientos
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /exportaciones/movimientos:
+    get:
+      operationId: get_exportaciones_movimientos
+      parameters:
+        - name: cliente_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: ['csv']
+        - name: fecha_desde
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fecha_hasta
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tipo_movimiento
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['ACUMULACION', 'CANJE', 'VENCIMIENTO', 'AJUSTE', 'DEVOLUCION']
+      responses:
+        '200':
+          description: Archivo CSV con movimientos de puntos
+          content:
+            text/csv:
+              schema:
+                type: string
+                example: "movimiento_id,cuenta_id,tipo_movimiento,cantidad,fecha_movimiento,origen,regla_aplicada_id\n..."
+  /health:
+    get:
+      operationId: get_health
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /movimientos-puntos:
+    get:
+      operationId: get_movimientos_puntos
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /movimientos-puntos/:movimientoId:
+    get:
+      operationId: get_movimientos_puntos_movimientoId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /reglas-puntos:
+    get:
+      operationId: get_reglas_puntos
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      operationId: post_reglas_puntos
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /reglas-puntos/:reglaId:
+    get:
+      operationId: get_reglas_puntos_reglaId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      operationId: put_reglas_puntos_reglaId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /reglas-puntos/:reglaId/configuraciones:
+    get:
+      operationId: get_reglas_puntos_reglaId_configuraciones
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      operationId: post_reglas_puntos_reglaId_configuraciones
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /reglas-puntos/configuraciones/:configId:
+    put:
+      operationId: put_reglas_puntos_configuraciones_configId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /reservas-puntos:
+    post:
+      operationId: post_reservas_puntos
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /reservas-puntos/:reservaId:
+    get:
+      operationId: get_reservas_puntos_reservaId
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /reservas-puntos/:reservaId/cancelar:
+    post:
+      operationId: post_reservas_puntos_reservaId_cancelar
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /reservas-puntos/:reservaId/confirmar:
+    post:
+      operationId: post_reservas_puntos_reservaId_confirmar
+      responses:
+        '201':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+  /terminos:
+    get:
+      operationId: get_terminos
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
+  /vencimientos:
+    get:
+      operationId: get_vencimientos
+      responses:
+        '200':
+          description: Derived from SPEC.md
+          content:
+            application/json:
+              schema:
+                type: object
